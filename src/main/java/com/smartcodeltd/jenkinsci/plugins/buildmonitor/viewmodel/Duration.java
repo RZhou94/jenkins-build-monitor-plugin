@@ -1,46 +1,64 @@
 package com.smartcodeltd.jenkinsci.plugins.buildmonitor.viewmodel;
 
-class Duration {//todo: extract the Duration class, or move it to a BuildView class
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
-    private final long duration;
+public class Duration {// todo: extract the Duration class, or move it to a BuildView
+				// class
 
-    private final static long MILLISECOND = 1;
-    private final static long SECONDS = 1000 * MILLISECOND;
-    private final static long MINUTES = 60 * SECONDS;
-    private final static long HOURS = 60 * MINUTES;
+	private final long duration;
 
-    public Duration(long milliseconds) {
-        this.duration = milliseconds;
-    }
+	private final static long MILLISECOND = 1;
+	private final static long SECONDS = 1000 * MILLISECOND;
+	private final static long MINUTES = 60 * SECONDS;
+	private final static long HOURS = 60 * MINUTES;
 
-    public long hours() {
-        return duration / HOURS;
-    }
+	public Duration(long milliseconds) {
+		this.duration = milliseconds;
+	}
 
-    public long minutes() {
-        return (duration - (hours() * HOURS)) / MINUTES;
-    }
+	public long hours() {
+		return duration / HOURS;
+	}
 
-    public long seconds() {
-        return (duration - (hours() * HOURS) - (minutes() * MINUTES)) / SECONDS;
-    }
+	public long minutes() {
+		return (duration - (hours() * HOURS)) / MINUTES;
+	}
 
-    public boolean greaterThan(Duration otherDuration) {
-        return duration > otherDuration.toLong();
-    }
+	public long seconds() {
+		return (duration - (hours() * HOURS) - (minutes() * MINUTES)) / SECONDS;
+	}
 
-    public String toString() {
-        String formatted;
+	public boolean greaterThan(Duration otherDuration) {
+		return duration > otherDuration.toLong();
+	}
 
-        formatted  = hours() > 0   ? hours()   + "h " : "";
-        formatted += minutes() > 0 ? minutes() + "m " : "";
-        formatted += seconds() + "s";
+	public String toString() {
+		String formatted = null;
+		formatted = hours() > 0 ? hours() + "h " : "";
+		formatted += minutes() > 0 ? minutes() + "m " : "";
+		formatted += seconds() + "s";
+		return formatted;
+	}
 
-        return formatted;
-    }
+	private long toLong() {
+		return duration;
+	}
 
-
-    private long toLong() {
-        return duration;
-    }
+	public String toStringDate() {
+		String formatted = null;
+		if (duration < 24 * HOURS) {
+			formatted = hours() > 0 ? hours() + "h " : "";
+			formatted += minutes() > 0 ? minutes() + "m " : "";
+			formatted += seconds() + "s " + "ago";
+		} else {
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+			long lastDay = Calendar.getInstance().getTimeInMillis() - duration;
+			Date date = new Date(lastDay);
+			formatted = dateFormat.format(date);
+		}
+		return formatted;
+	}
 }

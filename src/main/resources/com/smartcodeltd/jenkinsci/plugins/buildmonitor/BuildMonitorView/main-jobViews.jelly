@@ -10,7 +10,7 @@
 
         <div class="meta">
             <div data-ng-show="!!job.estimatedDuration" class="build-estimate">
-                <span class="estimated">avg: {{job.estimatedDuration}}</span>
+                <span class="estimated">{{job.estimatedDuration}}</span>
             </div>
 
             <div class="latest-results">
@@ -31,11 +31,16 @@
 
             <a data-ng-show="!!job.lastBuildName" class="build-name"
                title="Details of {{job.name}}, build {{job.lastBuildName}}"
-               href="{{job.lastBuildUrl}}">{{job.lastBuildName}} took {{job.lastBuildDuration}}</a>
+               href="{{job.lastBuildUrl}}">{{job.lastBuildName}}</a>
 
-            <div data-ng-show="!!job.elapsedSinceLastBuild" class="build-time">
-                <span class="elapsed">{{job.elapsedSinceLastBuild}} ago</span>
+            <div data-ng-show="!!job.elapsedSinceLastBuild" class="last-build-date">
+                <span class="elapsed">{{job.elapsedSinceLastBuild}}</span>
             </div>
+			
+			<div data-ng-show="!!job.estimatedDuration" class="build-time">
+				<span class="elapsed" data-ng-show="job.progress > 0">{{job.lastBuildDuration}}</span>
+				<span class="estimated">{{job.estimatedDuration}}</span>
+				 </div>
         </div>
     </li>
 </ul>

@@ -443,8 +443,10 @@ public class JobViewTest {
                 augmentedWith(Analysis.class));
 
         assertThat(view.hasKnownFailures(), is(true));
-        assertThat(view.knownFailures(), contains(rogueAi));
+        assertThat(view.knownFailures().size(), is(1));
+        assertThat(view.knownFailures().get(0), is(rogueAi));
     }
+
 
     @Test
     public void public_api_should_return_reasonable_defaults_for_jobs_that_never_run() throws Exception {
