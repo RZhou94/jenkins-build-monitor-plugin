@@ -9,10 +9,6 @@
         </div>
 
         <div class="meta">
-            <div data-ng-show="!!job.estimatedDuration" class="build-estimate">
-                <span class="estimated">{{job.estimatedDuration}}</span>
-            </div>
-
             <div class="latest-results">
                 <h2>
                     <a title="{{job.name}}"

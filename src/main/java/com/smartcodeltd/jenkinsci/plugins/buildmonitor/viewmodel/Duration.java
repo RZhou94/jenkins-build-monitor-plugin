@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Duration {// todo: extract the Duration class, or move it to a BuildView
+class Duration {// todo: extract the Duration class, or move it to a BuildView
 				// class
 
 	private final long duration;
@@ -52,7 +52,7 @@ public class Duration {// todo: extract the Duration class, or move it to a Buil
 		if (duration < 24 * HOURS) {
 			formatted = hours() > 0 ? hours() + "h " : "";
 			formatted += minutes() > 0 ? minutes() + "m " : "";
-			formatted += seconds() + "s " + "ago";
+			formatted += seconds() + "s";
 		} else {
 			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 			long lastDay = Calendar.getInstance().getTimeInMillis() - duration;
