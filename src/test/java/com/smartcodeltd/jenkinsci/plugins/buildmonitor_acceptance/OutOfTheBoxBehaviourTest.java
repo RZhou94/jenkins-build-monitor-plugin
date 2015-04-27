@@ -18,22 +18,22 @@ public class OutOfTheBoxBehaviourTest extends AcceptanceTest {
  * Didn't work for a windows system exploitation Failed to clean up temp dirs
  * */
     
-//    @Test
-//    @With(plugins = { "buildgraph-view-1.0.hpi", "git-1.5.0.hpi", "git-client-1.8.0.jpi" })
-//    public void correctly_displays_successful_and_failing_jobs() throws Exception {
-//
-//        given.IHave(
-//            aFreestyleProject("example-build").configuredToRun(aPassingShellScript()).executed(),
-//            aFreestyleProject("example-acceptance").configuredToRun(aFailingShellScript()).executed()
-//        ).
-//
-//        WhenI(createABuildMonitorView("Build Monitor").that(includesAllTheJobs()));
-//
-//        // then ...
-//
-//        buildMonitor = buildMonitorView("Build Monitor");
-//
-//        assertThat(buildMonitor.job("example-build"), isSuccessful());
-//        assertThat(buildMonitor.job("example-acceptance"), isFailing());
-//    }
+    @Test
+    @With(plugins = { "buildgraph-view-1.0.hpi", "git-1.5.0.hpi", "git-client-1.8.0.jpi" })
+    public void correctly_displays_successful_and_failing_jobs() throws Exception {
+
+        given.IHave(
+            aFreestyleProject("example-build").configuredToRun(aPassingShellScript()).executed(),
+            aFreestyleProject("example-acceptance").configuredToRun(aFailingShellScript()).executed()
+        ).
+
+        WhenI(createABuildMonitorView("Build Monitor").that(includesAllTheJobs()));
+
+        // then ...
+
+        buildMonitor = buildMonitorView("Build Monitor");
+
+        assertThat(buildMonitor.job("example-build"), isSuccessful());
+        assertThat(buildMonitor.job("example-acceptance"), isFailing());
+    }
 }

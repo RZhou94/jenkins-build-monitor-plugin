@@ -111,7 +111,7 @@ public class JobView {
 	}
 
 	private String formattedDate(Duration duration) {
-		return null != duration ? duration.toStringDate() : "nada";
+		return null != duration ? duration.toStringDate() : "";
 	}
 
 	@JsonProperty

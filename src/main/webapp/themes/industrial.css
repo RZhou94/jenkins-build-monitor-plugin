@@ -386,7 +386,8 @@ h2 {
 }
 
 .build-monitor ul#job-views .meta .latest-results {
-    width:90%; margin:0 auto;
+    width:90%; margin:3em auto;
+    vertical-align: middle;
 }
 .build-monitor ul#job-views .meta .latest-results * {
     text-align: center;

@@ -13,22 +13,22 @@ import static org.hamcrest.core.Is.is;
 // @TODO: Work in progress
 public class BehaviourWithBuildFailureAnalyserTest extends AcceptanceTest {
 
-//    @Test
-//    @With(plugins = { "buildgraph-view-1.0.hpi", "git-1.5.0.hpi", "git-client-1.8.0.jpi" })
-//    public void displays_potential_failure_cause_when_it_is_known() throws Exception {
-//        given.I(
-//            defineABuildFailureCause(
-//                "Shell script failure",
-//                "A shell script failure happened",
-//                "Build step 'Execute shell' marked build as failure"
-//            ),
-//            createABuildMonitorView("Build Monitor").that(includesAllTheJobs())
-//        ).
-//
-//        WhenIHave(aFreestyleProject("example-acceptance").configuredToRun(aFailingShellScript()).executed());
-//
-//        // then ...
-//
-//        assertThat(buildMonitorView("Build Monitor").job("example-acceptance").possibleFailureCause(), is("Shell script failure"));
-//    }
+    @Test
+    @With(plugins = { "buildgraph-view-1.0.hpi", "git-1.5.0.hpi", "git-client-1.8.0.jpi" })
+    public void displays_potential_failure_cause_when_it_is_known() throws Exception {
+        given.I(
+            defineABuildFailureCause(
+                "Shell script failure",
+                "A shell script failure happened",
+                "Build step 'Execute shell' marked build as failure"
+            ),
+            createABuildMonitorView("Build Monitor").that(includesAllTheJobs())
+        ).
+
+        WhenIHave(aFreestyleProject("example-acceptance").configuredToRun(aFailingShellScript()).executed());
+
+        // then ...
+
+        assertThat(buildMonitorView("Build Monitor").job("example-acceptance").possibleFailureCause(), is("Shell script failure"));
+    }
 }

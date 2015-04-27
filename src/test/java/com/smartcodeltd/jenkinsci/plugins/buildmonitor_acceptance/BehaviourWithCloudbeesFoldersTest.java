@@ -17,33 +17,33 @@ public class BehaviourWithCloudbeesFoldersTest extends AcceptanceTest {
 
     private BuildMonitor buildMonitor;
 
-//    @Test
-//    @With(plugins = {
-//            "cloudbees-folder-4.2.3.hpi",
-//            "buildgraph-view-1.0.hpi", "git-1.5.0.hpi", "git-client-1.8.0.jpi"
-//    })
-//    public void displays_jobs_nested_in_folders() throws Exception {
-//        given.IHave(
-//            aFreestyleProject("Deploy to QA"),
-//            aFolder("Librarian Project").containing(
-//                aFreestyleProject("Librarian Core"),
-//                aFolder("Micro-services").containing(
-//                    aFreestyleProject("Indexer")
-//                )
-//            )
-//        ).
-//
-//        WhenI(createABuildMonitorView("Search Services").that(
-//            includesAllTheJobs(),
-//            recursesInSubFolders()
-//        ));
-//
-//        // then ...
-//
-//        buildMonitor = buildMonitorView("Search Services");
-//
-//        assertThat(buildMonitor.job("deploy-to-qa"), isDisplayed());
-//        assertThat(buildMonitor.job("librarian-project-micro-services-indexer"), isDisplayed());
-//        assertThat(buildMonitor.job("librarian-project-librarian-core"), isDisplayed());
-//    }
+    @Test
+    @With(plugins = {
+            "cloudbees-folder-4.2.3.hpi",
+            "buildgraph-view-1.0.hpi", "git-1.5.0.hpi", "git-client-1.8.0.jpi"
+    })
+    public void displays_jobs_nested_in_folders() throws Exception {
+        given.IHave(
+            aFreestyleProject("Deploy to QA"),
+            aFolder("Librarian Project").containing(
+                aFreestyleProject("Librarian Core"),
+                aFolder("Micro-services").containing(
+                    aFreestyleProject("Indexer")
+                )
+            )
+        ).
+
+        WhenI(createABuildMonitorView("Search Services").that(
+            includesAllTheJobs(),
+            recursesInSubFolders()
+        ));
+
+        // then ...
+
+        buildMonitor = buildMonitorView("Search Services");
+
+        assertThat(buildMonitor.job("deploy-to-qa"), isDisplayed());
+        assertThat(buildMonitor.job("librarian-project-micro-services-indexer"), isDisplayed());
+        assertThat(buildMonitor.job("librarian-project-librarian-core"), isDisplayed());
+    }
 }
